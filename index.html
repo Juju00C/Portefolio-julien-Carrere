@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Julien — Ingénieur Mécanique & Ergonomie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f4f0;
+      --red: #c0392b;
+      --red-dim: #8b1a10;
+      --grey: #1c1c1c;
+      --grey-mid: #2e2e2e;
+      --grey-light: #555;
+      --grey-text: #999;
+      --border: #2a2a2a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--red); }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav ul a {
+      color: var(--grey-text);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--white); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, rgba(192,57,43,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 2rem;
+      height: 1px;
+      background: var(--red);
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--grey-text);
+      max-width: 40ch;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--red-dim); }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--grey-text);
+      padding: 0.85rem 2rem;
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover { border-color: var(--white); color: var(--white); }
+
+    .hero-stats {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      gap: 2rem;
+      border-left: 1px solid var(--border);
+      padding-left: 4rem;
+    }
+
+    .stat-item {}
+
+    .stat-number {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 2.8rem;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-number span { color: var(--red); }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--grey-text);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* SECTION BASE */
+    section { padding: 6rem 4rem; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .section-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      white-space: nowrap;
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+
+    /* ABOUT */
+    #about {
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--grey-text);
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .about-text p strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .about-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .detail-block {}
+
+    .detail-block-title {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.8rem;
+    }
+
+    .detail-block ul {
+      list-style: none;
+    }
+
+    .detail-block ul li {
+      font-size: 0.85rem;
+      color: var(--grey-text);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .detail-block ul li::before {
+      content: '—';
+      color: var(--red);
+      font-size: 0.7rem;
+    }
+
+    /* PROJECTS */
+    #projets { border-top: 1px solid var(--border); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+    }
+
+    .project-card {
+      background: var(--black);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: background 0.3s;
+    }
+
+    .project-card:hover { background: var(--grey); }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--red);
+      transition: width 0.4s ease;
+    }
+
+    .project-card:hover::after { width: 100%; }
+
+    .project-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      color: var(--red);
+      margin-bottom: 1.5rem;
+    }
+
+    .project-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-size: 0.82rem;
+      color: var(--grey-text);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey-text);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.6rem;
+    }
+
+    .project-card:hover .tag {
+      border-color: var(--grey-mid);
+    }
+
+    /* EXPERIENCE */
+    #experience { border-top: 1px solid var(--border); }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .timeline-date {
+      font-size: 0.75rem;
+      color: var(--grey-text);
+      letter-spacing: 0.08em;
+      padding-top: 0.3rem;
+    }
+
+    .timeline-content {}
+
+    .timeline-role {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-company {
+      font-size: 0.82rem;
+      color: var(--red);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    .timeline-desc {
+      font-size: 0.85rem;
+      color: var(--grey-text);
+      line-height: 1.75;
+    }
+
+    /* SKILLS */
+    #competences { border-top: 1px solid var(--border); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+    }
+
+    .skill-group-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .skill-group-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .skill-list li {
+      font-size: 0.82rem;
+      color: var(--grey-text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-list li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: var(--red);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* TARGETS */
+    #cibles { border-top: 1px solid var(--border); }
+
+    .targets-intro {
+      font-size: 0.9rem;
+      color: var(--grey-text);
+      max-width: 60ch;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    .targets-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .target-chip {
+      border: 1px solid var(--border);
+      padding: 0.6rem 1.2rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey-text);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .target-chip:hover {
+      border-color: var(--red);
+      color: var(--white);
+    }
+
+    /* CONTACT */
+    #contact {
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .contact-headline {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-headline em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--grey-text);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--red);
+      color: var(--white);
+      background: rgba(192,57,43,0.05);
+    }
+
+    .contact-link-arrow {
+      font-size: 1rem;
+      transition: transform 0.2s;
+    }
+
+    .contact-link:hover .contact-link-arrow { transform: translateX(4px); }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--grey-text);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-flag {
+      font-size: 0.75rem;
+      color: var(--grey-text);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { gap: 1.5rem; }
+      #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
+      .hero-stats { border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 2rem; grid-template-rows: unset; grid-template-columns: repeat(3, 1fr); }
+      section { padding: 4rem 1.5rem; }
+      #about { grid-template-columns: 1fr; gap: 3rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      #contact { grid-template-columns: 1fr; gap: 3rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">J<span>.</span>CAILLET</a>
+    <ul>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#experience">Expérience</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Ingénieur Mécanique &amp; Ergonomie</p>
+      <h1>Concevoir des<br/>systèmes qui <em>performent</em>.</h1>
+      <p class="hero-desc">Diplômé UTBM 2026 — je combine simulation numérique, conception mécanique et ergonomie pour créer des solutions industrielles à haute valeur ajoutée.</p>
+      <div class="hero-ctas">
+        <a href="#projets" class="btn-primary">Voir mes projets</a>
+        <a href="#contact" class="btn-outline">Me contacter</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-number">6<span>+</span></div>
+        <div class="stat-label">Projets techniques</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">5<span>ans</span></div>
+        <div class="stat-label">Formation ingénieur</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">CH</div>
+        <div class="stat-label">Stage PFE — Sonceboz, Suisse</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-text">
+      <div class="section-header">
+        <span class="section-tag">Profil</span>
+        <h2>Ingénieur<br/>pluridisciplinaire</h2>
+      </div>
+      <p>Étudiant en dernière année à l'<strong>UTBM</strong> (Université de Technologie de Belfort-Montbéliard), je termine mon parcours par un stage de fin d'études chez <strong>Sonceboz</strong> en Suisse, spécialisé dans les actionneurs électriques pour systèmes de hayon électrique.</p>
+      <p>Mon approche associe rigueur analytique — simulation FEM, dynamique des structures — et sensibilité au produit réel, nourrie par ma passion pour le <strong>motorsport</strong> et la mécanique moto.</p>
+      <p>Je vise des environnements à haute exigence technique : <strong>compétition automobile, mobilité électrique, systèmes embarqués</strong>.</p>
+    </div>
+    <div class="about-details">
+      <div class="detail-block">
+        <div class="detail-block-title">Simulation</div>
+        <ul>
+          <li>MATLAB / Simulink</li>
+          <li>ANSYS Mechanical</li>
+          <li>Abaqus FEA</li>
+          <li>Dynamique des structures</li>
+        </ul>
+      </div>
+      <div class="detail-block">
+        <div class="detail-block-title">Conception</div>
+        <ul>
+          <li>SolidWorks</li>
+          <li>CATIA V5</li>
+          <li>Prototypage rapide</li>
+          <li>Ergonomie produit</li>
+        </ul>
+      </div>
+      <div class="detail-block">
+        <div class="detail-block-title">Langues</div>
+        <ul>
+          <li>Français — natif</li>
+          <li>Anglais — courant</li>
+          <li>Allemand — scolaire</li>
+        </ul>
+      </div>
+      <div class="detail-block">
+        <div class="detail-block-title">Formation</div>
+        <ul>
+          <li>UTBM — Diplôme ingénieur</li>
+          <li>Mécanique &amp; Ergonomie</li>
+          <li>Promo 2026</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projets">
+    <div class="section-header">
+      <span class="section-tag">Réalisations</span>
+      <h2>Projets techniques</h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <div class="project-title">URBA-E Flux — Moto électrique urbaine</div>
+        <p class="project-desc">Conception complète d'une moto électrique légère pour usage urbain. Dimensionnement de la chaîne de traction, structure cadre, intégration batterie et gestion thermique.</p>
+        <div class="project-tags">
+          <span class="tag">Électrique</span>
+          <span class="tag">SolidWorks</span>
+          <span class="tag">Dynamique véhicule</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <div class="project-title">Aérodynamique kart — Étude CFD & expérimentale</div>
+        <p class="project-desc">Étude aérodynamique d'un kart de compétition : simulations numériques, conception de déflecteurs, validation en soufflerie. Réduction significative de la traînée mesurée.</p>
+        <div class="project-tags">
+          <span class="tag">CFD</span>
+          <span class="tag">ANSYS Fluent</span>
+          <span class="tag">Motorsport</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">03</div>
+        <div class="project-title">Poignée d'escrime ergonomique</div>
+        <p class="project-desc">Conception ergonomique d'une poignée de fleuret adaptée aux compétiteurs de haut niveau. Analyse biomécanique, modélisation 3D, prototypage et tests utilisateurs.</p>
+        <div class="project-tags">
+          <span class="tag">Ergonomie</span>
+          <span class="tag">Biomécanique</span>
+          <span class="tag">Prototypage</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">04</div>
+        <div class="project-title">Actionneur électrique — Hayon Sonceboz</div>
+        <p class="project-desc">Stage PFE : développement de démonstrateurs pour actionneurs de hayon électrique. Collaboration R&D et équipes commerciales, excellence industrielle, pilotage de projets cross-fonctionnels.</p>
+        <div class="project-tags">
+          <span class="tag">Électromécanique</span>
+          <span class="tag">Industrie</span>
+          <span class="tag">Suisse</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">05</div>
+        <div class="project-title">Simulation FEM — Analyse de structures</div>
+        <p class="project-desc">Analyses par éléments finis de composants soumis à des chargements complexes (fatigue, impact, thermique). Corrélation mesures/calculs, optimisation topologique.</p>
+        <div class="project-tags">
+          <span class="tag">Abaqus</span>
+          <span class="tag">FEM</span>
+          <span class="tag">Optimisation</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">06</div>
+        <div class="project-title">Modélisation système — MATLAB/Simulink</div>
+        <p class="project-desc">Modélisation et simulation de systèmes dynamiques : contrôle de chaînes cinématiques, régulation de systèmes électromécaniques, analyse fréquentielle.</p>
+        <div class="project-tags">
+          <span class="tag">MATLAB</span>
+          <span class="tag">Simulink</span>
+          <span class="tag">Contrôle</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header">
+      <span class="section-tag">Parcours</span>
+      <h2>Expérience</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">2025 – 2026</div>
+        <div class="timeline-content">
+          <div class="timeline-role">Ingénieur stagiaire PFE</div>
+          <div class="timeline-company">Sonceboz — Sonceboz-Sombeval, Suisse</div>
+          <p class="timeline-desc">Développement de démonstrateurs pour actionneurs électriques de hayon automobile. Pilotage de projets cross-fonctionnels R&D / commercial. Contribution aux initiatives d'excellence industrielle et à la feuille de route produit.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2021 – 2026</div>
+        <div class="timeline-content">
+          <div class="timeline-role">Diplôme d'ingénieur — Mécanique &amp; Ergonomie</div>
+          <div class="timeline-company">UTBM — Belfort, France</div>
+          <p class="timeline-desc">Formation généraliste à dominante mécanique : mécanique des structures, dynamique des systèmes, ergonomie et facteurs humains, simulation numérique (FEM, CFD), gestion de projets industriels.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="competences">
+    <div class="section-header">
+      <span class="section-tag">Savoir-faire</span>
+      <h2>Compétences</h2>
+    </div>
+    <div class="skills-grid">
+      <div>
+        <div class="skill-group-title">Simulation</div>
+        <ul class="skill-list">
+          <li>MATLAB / Simulink</li>
+          <li>ANSYS Mechanical</li>
+          <li>ANSYS Fluent (CFD)</li>
+          <li>Abaqus FEA</li>
+          <li>Analyse modale</li>
+        </ul>
+      </div>
+      <div>
+        <div class="skill-group-title">CAO / Conception</div>
+        <ul class="skill-list">
+          <li>SolidWorks</li>
+          <li>CATIA V5</li>
+          <li>GD&amp;T / Tolérancement</li>
+          <li>Optimisation topologique</li>
+          <li>Impression 3D FDM</li>
+        </ul>
+      </div>
+      <div>
+        <div class="skill-group-title">Méthodes</div>
+        <ul class="skill-list">
+          <li>AMDEC / FMEA</li>
+          <li>Design Thinking</li>
+          <li>Analyse ergonomique</li>
+          <li>Lean / Amélioration continue</li>
+          <li>Gestion de projet</li>
+        </ul>
+      </div>
+      <div>
+        <div class="skill-group-title">Outils</div>
+        <ul class="skill-list">
+          <li>Python (data, scripting)</li>
+          <li>Microsoft Office 365</li>
+          <li>LaTeX</li>
+          <li>Git</li>
+          <li>Jira / Confluence</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARGETS -->
+  <section id="cibles">
+    <div class="section-header">
+      <span class="section-tag">Ambitions</span>
+      <h2>Secteurs cibles</h2>
+    </div>
+    <p class="targets-intro">À la recherche d'un poste d'ingénieur dans des environnements à haute exigence technique. Motorsport, mobilité électrique et systèmes embarqués sont mes domaines de prédilection.</p>
+    <div class="targets-grid">
+      <span class="target-chip">ORECA</span>
+      <span class="target-chip">Ligier Automotive</span>
+      <span class="target-chip">Hyundai Motorsport</span>
+      <span class="target-chip">Peugeot Sport</span>
+      <span class="target-chip">Alpine / Signatech</span>
+      <span class="target-chip">Mecachrome</span>
+      <span class="target-chip">Dallara</span>
+      <span class="target-chip">Multimatic</span>
+      <span class="target-chip">Mobilité électrique</span>
+      <span class="target-chip">Systèmes embarqués</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div>
+      <div class="section-header">
+        <span class="section-tag">Contact</span>
+      </div>
+      <h2 class="contact-headline">Travaillons<br/><em>ensemble</em>.</h2>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:julien.caillet@utbm.fr" class="contact-link">
+        <span>julien.caillet@utbm.fr</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="https://linkedin.com/in/julien-caillet" target="_blank" rel="noopener" class="contact-link">
+        <span>LinkedIn</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="#" class="contact-link">
+        <span>Télécharger mon CV</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-copy">© 2026 Julien Caillet — Ingénieur Mécanique &amp; Ergonomie</span>
+    <span class="footer-flag">Conçu &amp; développé from scratch</span>
+  </footer>
+
+</body>
+</html>
