@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lampe Mecalac DI82 — Julien Carrere</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black: #0a0a0a; --white: #f5f4f0; --red: #c0392b; --grey: #1c1c1c; --grey-text: #999; --border: #2a2a2a; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 4rem; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
+    .nav-logo span { color: var(--red); }
+    .nav-back { color: var(--grey-text); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-back:hover { color: var(--white); }
+
+    .project-hero { padding: 8rem 4rem 4rem; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: end; }
+    .project-eyebrow { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+    .project-eyebrow::before { content: ''; display: inline-block; width: 2rem; height: 1px; background: var(--red); }
+    h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+    h1 em { font-style: normal; color: var(--red); }
+    .meta-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 0.3rem; }
+    .meta-value { font-size: 0.85rem; color: var(--grey-text); margin-bottom: 1.2rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .tag { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-text); border: 1px solid var(--border); padding: 0.25rem 0.6rem; }
+
+    .content-section { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+    h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.4rem, 2.5vw, 2rem); letter-spacing: -0.01em; margin-bottom: 2rem; }
+    p { color: var(--grey-text); font-size: 0.95rem; line-height: 1.85; margin-bottom: 1.2rem; }
+    p strong { color: var(--white); font-weight: 500; }
+
+    /* Schéma lampe SVG placeholder */
+    .lamp-visual { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+    .lamp-diagram { margin-top: 2.5rem; background: var(--grey); padding: 3rem; display: flex; justify-content: center; align-items: center; min-height: 400px; position: relative; overflow: hidden; }
+    .lamp-diagram::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 40%, rgba(192,57,43,0.08) 0%, transparent 70%); }
+    .lamp-schema { display: flex; gap: 6rem; align-items: center; position: relative; z-index: 1; }
+    .lamp-part { text-align: center; }
+    .lamp-icon { width: 70px; height: 70px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem; }
+    .lamp-part-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.82rem; margin-bottom: 0.3rem; color: var(--white); }
+    .lamp-part-desc { font-size: 0.72rem; color: var(--grey-text); max-width: 100px; }
+
+    .features { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--border); margin-top: 2.5rem; }
+    .feature-block { background: var(--black); padding: 2.5rem; }
+    .feature-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.75rem; }
+    .feature-desc { font-size: 0.82rem; color: var(--grey-text); line-height: 1.75; }
+    .feature-tag { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+
+    .nav-projects { padding: 4rem; display: flex; justify-content: space-between; align-items: center; }
+    .nav-proj-link { color: var(--grey-text); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-proj-link:hover { color: var(--white); }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .project-hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 2.5rem; }
+      .content-section, .lamp-visual, .features { padding: 3rem 1.5rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .lamp-schema { flex-direction: column; gap: 2rem; }
+      .nav-projects { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">J<span>.</span>CARRERE</a>
+    <a href="../index.html#projets" class="nav-back">← Retour aux projets</a>
+  </nav>
+
+  <div class="project-hero">
+    <div>
+      <p class="project-eyebrow">DI82 — P2024 · Design industriel</p>
+      <h1>Lampe<br/><em>Mecalac</em></h1>
+      <p style="color:var(--grey-text); font-size:0.95rem; line-height:1.85; max-width:50ch;">
+        Conception d'une lampe de travail portable pour la marque Mecalac — polyvalente atelier/bureau,
+        batterie amovible, intensité et température de lumière réglables.
+      </p>
+      <div class="tags">
+        <span class="tag">Design industriel</span>
+        <span class="tag">Ergonomie</span>
+        <span class="tag">Prototypage</span>
+        <span class="tag">CAO</span>
+        <span class="tag">Mecalac</span>
+      </div>
+    </div>
+    <div>
+      <div class="meta-label">UV</div>
+      <div class="meta-value">DI82 — Design Industriel P2024</div>
+      <div class="meta-label">Client fictif</div>
+      <div class="meta-value">Mecalac — Équipements pour chantiers & ateliers</div>
+      <div class="meta-label">Livrable</div>
+      <div class="meta-value">Conception 3D + dossier de définition produit</div>
+      <div class="meta-label">Année</div>
+      <div class="meta-value">2024 — UTBM</div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h2>Le <span style="color:var(--red)">cahier des charges</span></h2>
+    <p>
+      <strong>Mecalac</strong>, fabricant d'engins de chantier reconnu, souhaitait équiper ses ateliers et bureaux
+      de luminaires à sa propre marque. Le brief : une lampe compacte, robuste, adaptée aux conditions de l'atelier
+      tout en étant suffisamment élégante pour un bureau.
+    </p>
+    <p>
+      L'utilisateur doit pouvoir <strong>déplacer et orienter librement</strong> la source lumineuse, régler
+      l'intensité et la température de couleur selon l'usage (travail de précision vs ambiance bureau),
+      et retirer la batterie facilement pour la recharger ailleurs.
+    </p>
+    <p>
+      Le challenge principal était de <strong>réconcilier robustesse atelier et design bureau</strong> : finitions
+      caoutchouc anti-choc côté atelier, lignes propres et sobres côté bureau. Le résultat est un produit
+      à double identité, fidèle à l'univers Mecalac (jaune, noir, métal).
+    </p>
+  </div>
+
+  <div class="lamp-visual">
+    <h2>Architecture <span style="color:var(--red)">produit</span></h2>
+    <div class="lamp-diagram">
+      <div class="lamp-schema">
+        <div class="lamp-part">
+          <div class="lamp-icon">💡</div>
+          <div class="lamp-part-name">Réflecteur LED</div>
+          <div class="lamp-part-desc">Intensité & température réglables</div>
+        </div>
+        <div class="lamp-part">
+          <div class="lamp-icon">📏</div>
+          <div class="lamp-part-name">Bras télescopique</div>
+          <div class="lamp-part-desc">Extension & orientation multi-axe</div>
+        </div>
+        <div class="lamp-part">
+          <div class="lamp-icon">🔘</div>
+          <div class="lamp-part-name">Bouton quart de tour</div>
+          <div class="lamp-part-desc">Contrôle tactile en caoutchouc</div>
+        </div>
+        <div class="lamp-part">
+          <div class="lamp-icon">🔋</div>
+          <div class="lamp-part-name">Batterie amovible</div>
+          <div class="lamp-part-desc">Extraction rapide, recharge USB-C</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="features">
+    <h2>Fonctions <span style="color:var(--red)">clés</span></h2>
+    <div class="features-grid">
+      <div class="feature-block">
+        <div class="feature-tag">Mobilité</div>
+        <div class="feature-title">Portable & autonome</div>
+        <div class="feature-desc">Batterie amovible rechargeable. Aucune contrainte de câble lors des déplacements dans l'atelier. Prise en main assurée par une bande en tissu élastique antidérapante.</div>
+      </div>
+      <div class="feature-block">
+        <div class="feature-tag">Réglage</div>
+        <div class="feature-title">Lumière adaptative</div>
+        <div class="feature-desc">Intensité lumineuse et température de couleur (lumière chaude bureau / lumière froide atelier) ajustables par le bouton quart de tour en caoutchouc.</div>
+      </div>
+      <div class="feature-block">
+        <div class="feature-tag">Usage dual</div>
+        <div class="feature-title">Atelier & bureau</div>
+        <div class="feature-desc">Deux modes d'utilisation : éclairage large (déploiement complet du réflecteur) et éclairage directionnel (focus sur une zone de travail). Transformation rapide sans outil.</div>
+      </div>
+      <div class="feature-block">
+        <div class="feature-tag">Robustesse</div>
+        <div class="feature-title">Résistance atelier</div>
+        <div class="feature-desc">Anneaux en caoutchouc absorbant les chocs, résistance aux projections et aux huiles. Indice de protection conforme aux standards atelier.</div>
+      </div>
+      <div class="feature-block">
+        <div class="feature-tag">Ergonomie</div>
+        <div class="feature-title">Prise en main optimisée</div>
+        <div class="feature-desc">Bande tissu élastique pour une préhension sûre avec des gants. Boutons accessibles à une main. Centre de gravité bas pour la stabilité en position posée.</div>
+      </div>
+      <div class="feature-block">
+        <div class="feature-tag">Identité</div>
+        <div class="feature-title">Design Mecalac</div>
+        <div class="feature-desc">Codes couleur Mecalac (jaune sécurité, noir mat, métal brossé). Produit cohérent avec l'univers de la marque, différenciant sur le marché des éclairages professionnels.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-projects">
+    <a href="honda-crm125.html" class="nav-proj-link">← Projet précédent</a>
+    <a href="escrime.html" class="nav-proj-link">Projet suivant →</a>
+  </div>
+
+</body>
+</html>

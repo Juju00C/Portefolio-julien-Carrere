@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mercedes 190E EVO2 — Julien Carrere</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a; --white: #f5f4f0; --red: #c0392b; --red-dim: #8b1a10;
+      --grey: #1c1c1c; --grey-mid: #2e2e2e; --grey-light: #555; --grey-text: #999; --border: #2a2a2a;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(10,10,10,0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
+    .nav-logo span { color: var(--red); }
+    .nav-back { color: var(--grey-text); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+    .nav-back:hover { color: var(--white); }
+
+    .project-hero {
+      padding: 8rem 4rem 4rem;
+      border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: end;
+    }
+    .project-eyebrow { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+    .project-eyebrow::before { content: ''; display: inline-block; width: 2rem; height: 1px; background: var(--red); }
+    h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+    h1 em { font-style: normal; color: var(--red); }
+    .project-meta { display: flex; flex-direction: column; gap: 1.5rem; }
+    .meta-item {}
+    .meta-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 0.3rem; }
+    .meta-value { font-size: 0.85rem; color: var(--grey-text); }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .tag { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-text); border: 1px solid var(--border); padding: 0.25rem 0.6rem; }
+
+    .content-section { padding: 5rem 4rem; border-bottom: 1px solid var(--border); max-width: 1200px; }
+    h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.4rem, 2.5vw, 2rem); letter-spacing: -0.01em; margin-bottom: 2rem; }
+    h2 span { color: var(--red); }
+    p { color: var(--grey-text); font-size: 0.95rem; line-height: 1.85; margin-bottom: 1.2rem; }
+    p strong { color: var(--white); font-weight: 500; }
+
+    .gallery { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+    .gallery h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.4rem, 2.5vw, 2rem); letter-spacing: -0.01em; margin-bottom: 2.5rem; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
+    .gallery-grid .img-wrap { background: var(--grey); overflow: hidden; aspect-ratio: 4/3; }
+    .gallery-grid .img-wrap.wide { grid-column: span 2; aspect-ratio: 16/9; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
+    .gallery-grid .img-wrap:hover img { transform: scale(1.04); }
+
+    .specs { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+    .specs h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.4rem, 2.5vw, 2rem); letter-spacing: -0.01em; margin-bottom: 2.5rem; }
+    .specs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--border); }
+    .spec-block { background: var(--black); padding: 2rem; }
+    .spec-title { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+    .spec-value { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.4rem; color: var(--white); }
+    .spec-sub { font-size: 0.78rem; color: var(--grey-text); margin-top: 0.25rem; }
+
+    .nav-projects { padding: 4rem; display: flex; justify-content: space-between; align-items: center; }
+    .nav-proj-link { color: var(--grey-text); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+    .nav-proj-link:hover { color: var(--white); }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .project-hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 2.5rem; }
+      .content-section, .gallery, .specs { padding: 3rem 1.5rem; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid .img-wrap.wide { grid-column: span 2; }
+      .specs-grid { grid-template-columns: 1fr 1fr; }
+      .nav-projects { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">J<span>.</span>CARRERE</a>
+    <a href="../index.html#projets" class="nav-back">← Retour aux projets</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="project-hero">
+    <div>
+      <p class="project-eyebrow">CP92 — P25 · CATIA V5</p>
+      <h1>Mercedes<br/><em>190E EVO2</em></h1>
+      <p style="color:var(--grey-text); font-size:0.95rem; line-height:1.85; max-width:50ch;">
+        Maquette numérique complète de la Mercedes-Benz 190E 2.5-16 Evolution II réalisée en CATIA V5,
+        icône du Touring Car des années 90. Modélisation surfacique haute fidélité, rendu de synthèse photoréaliste.
+      </p>
+      <div class="tags">
+        <span class="tag">CATIA V5</span>
+        <span class="tag">Surfacique</span>
+        <span class="tag">Rendu 3D</span>
+        <span class="tag">Automobile</span>
+        <span class="tag">Maquette numérique</span>
+      </div>
+    </div>
+    <div class="project-meta">
+      <div class="meta-item">
+        <div class="meta-label">UV</div>
+        <div class="meta-value">CP92 — Conception assistée par ordinateur avancée</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Logiciel</div>
+        <div class="meta-value">CATIA V5 — Modélisation surfacique & assemblage</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Livrable</div>
+        <div class="meta-value">Maquette numérique complète + rendus photoréalistes</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Année</div>
+        <div class="meta-value">2025</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESCRIPTION -->
+  <div class="content-section">
+    <h2>Le <span>projet</span></h2>
+    <p>
+      Dans le cadre de l'UV CP92, l'objectif était de modéliser intégralement une carrosserie automobile emblématique
+      en CATIA V5. La <strong>Mercedes-Benz 190E 2.5-16 Evolution II</strong> (1990) a été choisie pour la complexité
+      de ses surfaces — aileron arrière massif, passages de roues élargis, boucliers agressifs — qui constituent un
+      défi technique représentatif des méthodes de modélisation surfacique avancée.
+    </p>
+    <p>
+      Le modèle a été construit pièce par pièce, du châssis aux détails de carrosserie, en respectant les
+      proportions réelles du véhicule. Chaque surface a été construite par <strong>splines, lofts et raccords
+      tangents</strong> pour garantir la continuité de courbure G2 entre les panneaux.
+    </p>
+    <p>
+      Les rendus de synthèse ont ensuite été produits pour valider le rendu visuel final et mettre en valeur
+      les spécificités aérodynamiques de cette version Evolution : diffuseur avant, jupes latérales, et
+      l'aileron biplan signature de l'EVO2.
+    </p>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery">
+    <h2>Rendus de <span style="color:var(--red)">synthèse</span></h2>
+    <div class="gallery-grid">
+      <div class="img-wrap wide">
+        <img src="images/mercedes/sunset.jpg" alt="Vue d'ensemble coucher de soleil" loading="lazy" />
+      </div>
+      <div class="img-wrap">
+        <img src="images/mercedes/PDG.jpg" alt="Vue PDG" loading="lazy" />
+      </div>
+      <div class="img-wrap">
+        <img src="images/mercedes/Rendu parking.jpg" alt="Vue parking" loading="lazy" />
+      </div>
+      <div class="img-wrap">
+        <img src="images/mercedes/Quart face.jpg" alt="Quart avant" loading="lazy" />
+      </div>
+      <div class="img-wrap">
+        <img src="images/mercedes/detail avant.jpg" alt="Détail avant" loading="lazy" />
+      </div>
+      <div class="img-wrap">
+        <img src="images/mercedes/Detail ar.jpg" alt="Détail arrière" loading="lazy" />
+      </div>
+      <div class="img-wrap">
+        <img src="images/mercedes/Aileron.jpg" alt="Aileron arrière" loading="lazy" />
+      </div>
+      <div class="img-wrap wide">
+        <img src="images/mercedes/Rendu AR.jpg" alt="Vue arrière" loading="lazy" />
+      </div>
+    </div>
+  </div>
+
+  <!-- SPECS -->
+  <div class="specs">
+    <h2>Points <span style="color:var(--red)">techniques</span></h2>
+    <div class="specs-grid">
+      <div class="spec-block">
+        <div class="spec-title">Modélisation</div>
+        <div class="spec-value">Surfacique</div>
+        <div class="spec-sub">CATIA V5 — GSD & Part Design</div>
+      </div>
+      <div class="spec-block">
+        <div class="spec-title">Continuité</div>
+        <div class="spec-value">G2</div>
+        <div class="spec-sub">Raccords tangents entre panneaux</div>
+      </div>
+      <div class="spec-block">
+        <div class="spec-title">Assemblage</div>
+        <div class="spec-value">Complet</div>
+        <div class="spec-sub">Carrosserie + éléments de détail</div>
+      </div>
+      <div class="spec-block">
+        <div class="spec-title">Référence</div>
+        <div class="spec-value">190E EVO2</div>
+        <div class="spec-sub">Mercedes-Benz 2.5-16 Evolution II — 1990</div>
+      </div>
+      <div class="spec-block">
+        <div class="spec-title">Rendu</div>
+        <div class="spec-value">Photoréaliste</div>
+        <div class="spec-sub">Éclairage studio et environnement</div>
+      </div>
+      <div class="spec-block">
+        <div class="spec-title">Spécificités</div>
+        <div class="spec-value">EVO2</div>
+        <div class="spec-sub">Aileron biplan, passages de roues élargis, boucliers racing</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV PROJETS -->
+  <div class="nav-projects">
+    <a href="../index.html#projets" class="nav-proj-link">← Tous les projets</a>
+    <a href="urba-e-flux.html" class="nav-proj-link">Projet suivant →</a>
+  </div>
+
+</body>
+</html>

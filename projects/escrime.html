@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Révolutionner l'Escrime — Julien Carrere</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black: #0a0a0a; --white: #f5f4f0; --red: #c0392b; --grey: #1c1c1c; --grey-text: #999; --border: #2a2a2a; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 4rem; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
+    .nav-logo span { color: var(--red); }
+    .nav-back { color: var(--grey-text); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-back:hover { color: var(--white); }
+
+    .project-hero { padding: 8rem 4rem 4rem; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: end; }
+    .project-eyebrow { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+    .project-eyebrow::before { content: ''; display: inline-block; width: 2rem; height: 1px; background: var(--red); }
+    h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+    h1 em { font-style: normal; color: var(--red); }
+    .meta-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 0.3rem; }
+    .meta-value { font-size: 0.85rem; color: var(--grey-text); margin-bottom: 1.2rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .tag { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-text); border: 1px solid var(--border); padding: 0.25rem 0.6rem; }
+
+    .content-section { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+    h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.4rem, 2.5vw, 2rem); letter-spacing: -0.01em; margin-bottom: 2rem; }
+    p { color: var(--grey-text); font-size: 0.95rem; line-height: 1.85; margin-bottom: 1.2rem; }
+    p strong { color: var(--white); font-weight: 500; }
+
+    .process { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+    .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5px; background: var(--border); margin-top: 2.5rem; }
+    .process-block { background: var(--black); padding: 2.5rem; position: relative; }
+    .process-block::before { content: attr(data-step); position: absolute; top: 1.5rem; right: 2rem; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; color: var(--red); opacity: 0.08; line-height: 1; }
+    .process-step { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+    .process-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.75rem; }
+    .process-desc { font-size: 0.82rem; color: var(--grey-text); line-height: 1.75; }
+
+    .concept { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+    .concept-highlight { background: var(--grey); border-left: 3px solid var(--red); padding: 2.5rem 3rem; margin-top: 2.5rem; }
+    .concept-quote { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.1rem, 2vw, 1.5rem); line-height: 1.4; margin-bottom: 1.5rem; }
+    .concept-sub { font-size: 0.85rem; color: var(--grey-text); }
+
+    .specs { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+    .specs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--border); margin-top: 2.5rem; }
+    .spec-block { background: var(--black); padding: 2rem; }
+    .spec-title { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+    .spec-value { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--white); }
+    .spec-sub { font-size: 0.78rem; color: var(--grey-text); margin-top: 0.25rem; }
+
+    .nav-projects { padding: 4rem; display: flex; justify-content: space-between; align-items: center; }
+    .nav-proj-link { color: var(--grey-text); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-proj-link:hover { color: var(--white); }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .project-hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 2.5rem; }
+      .content-section, .process, .concept, .specs { padding: 3rem 1.5rem; }
+      .process-grid { grid-template-columns: 1fr; }
+      .specs-grid { grid-template-columns: 1fr 1fr; }
+      .nav-projects { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">J<span>.</span>CARRERE</a>
+    <a href="../index.html#projets" class="nav-back">← Retour aux projets</a>
+  </nav>
+
+  <div class="project-hero">
+    <div>
+      <p class="project-eyebrow">CP82 · Ergonomie & Design produit</p>
+      <h1>Révolutionner<br/><em>l'Escrime</em></h1>
+      <p style="color:var(--grey-text); font-size:0.95rem; line-height:1.85; max-width:50ch;">
+        Conception d'une poignée de fleuret ergonomique pour compétiteurs de haut niveau.
+        Analyse biomécanique terrain, design centré utilisateur, prototypage et brevet.
+      </p>
+      <div class="tags">
+        <span class="tag">Ergonomie</span>
+        <span class="tag">Biomécanique</span>
+        <span class="tag">Design produit</span>
+        <span class="tag">Prototypage</span>
+        <span class="tag">Design thinking</span>
+      </div>
+    </div>
+    <div>
+      <div class="meta-label">UV</div>
+      <div class="meta-value">CP82 — Conception de Produits</div>
+      <div class="meta-label">Équipe</div>
+      <div class="meta-value">Swetha Gautier · Justin Bressac · Omar Saghir · Tom Kuperminc · Julien Carrère</div>
+      <div class="meta-label">Encadrant</div>
+      <div class="meta-value">M. Morad Mahdjoub — Responsable UV</div>
+      <div class="meta-label">Terrain</div>
+      <div class="meta-value">Club d'escrime de Belfort — Maître d'armes Philippe</div>
+      <div class="meta-label">Année</div>
+      <div class="meta-value">2024 — UTBM</div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h2>La <span style="color:var(--red)">problématique</span></h2>
+    <p>
+      La poignée de fleuret est un élément critique pour le compétiteur : elle conditionne la précision du geste,
+      la transmission des vibrations d'impact et la fatigue musculaire sur la durée d'un tournoi.
+      Pourtant, les modèles disponibles sur le marché sont peu adaptés aux morphologies variées des escrimeurs
+      et restent peu évolutifs.
+    </p>
+    <p>
+      Le projet CP82 nous a demandé de partir du terrain — <strong>observations en séance au club de Belfort,
+      entretiens avec le maître d'armes Philippe, tests utilisateurs</strong> — pour identifier les véritables
+      irritants et concevoir une solution ancrée dans la réalité de l'usage à haut niveau.
+    </p>
+    <p>
+      L'objectif final : une poignée repensée, <strong>prototypée, testée en conditions réelles</strong> et
+      documentée jusqu'au dépôt de brevet.
+    </p>
+  </div>
+
+  <div class="process">
+    <h2>Démarche <span style="color:var(--red)">design thinking</span></h2>
+    <div class="process-grid">
+      <div class="process-block" data-step="1">
+        <div class="process-step">Phase 01 — Comprendre</div>
+        <div class="process-title">Recherche & terrain</div>
+        <div class="process-desc">Recherche documentaire sur la biomécanique de l'escrime. Observations terrain au club de Belfort. Entretiens avec le maître d'armes et des compétiteurs. Analyse des avis utilisateurs existants.</div>
+      </div>
+      <div class="process-block" data-step="2">
+        <div class="process-step">Phase 02 — Définir</div>
+        <div class="process-title">Besoin & profils utilisateurs</div>
+        <div class="process-desc">Analyse Kano des fonctionnalités. Définition des profils d'utilisateurs (compétiteur junior, senior, gaucher). Cahier des charges fonctionnel avec analyse pieuvre.</div>
+      </div>
+      <div class="process-block" data-step="3">
+        <div class="process-step">Phase 03 — Idéer</div>
+        <div class="process-title">Génération de concepts</div>
+        <div class="process-desc">Sessions de créativité structurées. Génération de pré-concepts variés. Sélection par matrice de décision. Étude ergonomique approfondie des concepts retenus.</div>
+      </div>
+      <div class="process-block" data-step="4">
+        <div class="process-step">Phase 04 — Prototyper & tester</div>
+        <div class="process-title">Concept final & brevet</div>
+        <div class="process-desc">Modélisation 3D du concept retenu. Choix des matériaux (polymère haute résistance, insert métal). Prototypage, tests en conditions réelles, ajustements. Rédaction et dépôt de brevet.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <h2>Le concept <span style="color:var(--red)">retenu</span></h2>
+    <div class="concept-highlight">
+      <div class="concept-quote">"Une poignée modulaire, adaptable à la morphologie et au style de jeu de l'escrimeur — sans compromis sur la transmission des sensations."</div>
+      <div class="concept-sub">Le concept final intègre un système d'insert interchangeable permettant d'ajuster l'angle et le galbe de la prise en main selon la morphologie et les préférences tactiques du tireur. Un matériau composite absorbant les vibrations réduit la fatigue sur longue durée tout en conservant les retours haptiques essentiels à la finesse du jeu.</div>
+    </div>
+  </div>
+
+  <div class="specs">
+    <h2>Livrables <span style="color:var(--red)">du projet</span></h2>
+    <div class="specs-grid">
+      <div class="spec-block">
+        <div class="spec-title">Méthodologie</div>
+        <div class="spec-value">Design Thinking</div>
+        <div class="spec-sub">Double Diamant UX/Produit</div>
+      </div>
+      <div class="spec-block">
+        <div class="spec-title">Utilisateurs interrogés</div>
+        <div class="spec-value">10+</div>
+        <div class="spec-sub">Escrimeurs + maître d'armes</div>
+      </div>
+      <div class="spec-block">
+        <div class="spec-title">Concepts générés</div>
+        <div class="spec-value">15+</div>
+        <div class="spec-sub">Sélection par matrice décisionnelle</div>
+      </div>
+      <div class="spec-block">
+        <div class="spec-title">Prototypes</div>
+        <div class="spec-value">3</div>
+        <div class="spec-sub">Testés en conditions réelles au club</div>
+      </div>
+      <div class="spec-block">
+        <div class="spec-title">Brevet</div>
+        <div class="spec-value">Déposé</div>
+        <div class="spec-sub">Architecture modulaire poignée fleuret</div>
+      </div>
+      <div class="spec-block">
+        <div class="spec-title">Rapport final</div>
+        <div class="spec-value">CP82</div>
+        <div class="spec-sub">Dossier complet de conception produit</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-projects">
+    <a href="mecalac-lamp.html" class="nav-proj-link">← Projet précédent</a>
+    <a href="fondue-ergo.html" class="nav-proj-link">Projet suivant →</a>
+  </div>
+
+</body>
+</html>

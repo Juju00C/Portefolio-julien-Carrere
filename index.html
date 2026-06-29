@@ -299,7 +299,10 @@
       padding: 2.5rem;
       position: relative;
       overflow: hidden;
-      cursor: default;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      color: inherit;
       transition: background 0.3s;
     }
 
@@ -356,6 +359,22 @@
 
     .project-card:hover .tag {
       border-color: var(--grey-mid);
+    }
+
+    .project-card .project-arrow {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      font-size: 1rem;
+      color: var(--red);
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .project-card:hover .project-arrow {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     /* EXPERIENCE */
@@ -608,8 +627,8 @@
     </div>
     <div class="hero-stats">
       <div class="stat-item">
-        <div class="stat-number">6<span>+</span></div>
-        <div class="stat-label">Projets techniques</div>
+        <div class="stat-number">5<span>+</span></div>
+        <div class="stat-label">Projets présentés</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">5<span>ans</span></div>
@@ -679,71 +698,83 @@
     </div>
     <div class="projects-grid">
 
-      <div class="project-card">
+      <a class="project-card" href="projects/mercedes-190e.html">
         <div class="project-num">01</div>
-        <div class="project-title">URBA-E Flux — Moto électrique urbaine</div>
-        <p class="project-desc">Conception complète d'une moto électrique légère pour usage urbain. Dimensionnement de la chaîne de traction, structure cadre, intégration batterie et gestion thermique.</p>
+        <div class="project-title">Mercedes 190E EVO2 — Maquette numérique</div>
+        <p class="project-desc">Modélisation surfacique haute-fidélité de la Mercedes-Benz 190E 2.5-16 Evolution II en CATIA V5. Rendus photoréalistes — aileron biplan, passages de roues élargis, détails racing.</p>
         <div class="project-tags">
-          <span class="tag">Électrique</span>
-          <span class="tag">SolidWorks</span>
-          <span class="tag">Dynamique véhicule</span>
+          <span class="tag">CATIA V5</span>
+          <span class="tag">Surfacique</span>
+          <span class="tag">Rendu 3D</span>
+          <span class="tag">Automobile</span>
         </div>
-      </div>
+        <span class="project-arrow">→</span>
+      </a>
 
-      <div class="project-card">
+      <a class="project-card" href="projects/urba-e-flux.html">
         <div class="project-num">02</div>
-        <div class="project-title">Aérodynamique kart — Étude CFD & expérimentale</div>
-        <p class="project-desc">Étude aérodynamique d'un kart de compétition : simulations numériques, conception de déflecteurs, validation en soufflerie. Réduction significative de la traînée mesurée.</p>
+        <div class="project-title">URBA-E Flux — Moto électrique urbaine</div>
+        <p class="project-desc">Conception complète d'une moto électrique compacte (97,7 kg, batterie amovible 15 kg, guidon pliant à 350 mm). Chaîne de traction, structure cadre, approche marketing mobilité durable.</p>
         <div class="project-tags">
-          <span class="tag">CFD</span>
-          <span class="tag">ANSYS Fluent</span>
-          <span class="tag">Motorsport</span>
+          <span class="tag">SolidWorks</span>
+          <span class="tag">Électrique</span>
+          <span class="tag">Dynamique véhicule</span>
+          <span class="tag">Design</span>
         </div>
-      </div>
+        <span class="project-arrow">→</span>
+      </a>
 
-      <div class="project-card">
+      <a class="project-card" href="projects/honda-crm125.html">
         <div class="project-num">03</div>
-        <div class="project-title">Poignée d'escrime ergonomique</div>
-        <p class="project-desc">Conception ergonomique d'une poignée de fleuret adaptée aux compétiteurs de haut niveau. Analyse biomécanique, modélisation 3D, prototypage et tests utilisateurs.</p>
+        <div class="project-title">Honda CRM 125 — Reverse engineering CATIA</div>
+        <p class="project-desc">Rétroconception complète du moteur 2T d'une Honda CRM 125 (1994). Démontage, métrologie pièce par pièce, modélisation CATIA V5 et assemblage numérique complet.</p>
+        <div class="project-tags">
+          <span class="tag">CATIA V5</span>
+          <span class="tag">Rétroconception</span>
+          <span class="tag">Moteur 2T</span>
+          <span class="tag">Assemblage</span>
+        </div>
+        <span class="project-arrow">→</span>
+      </a>
+
+      <a class="project-card" href="projects/mecalac-lamp.html">
+        <div class="project-num">04</div>
+        <div class="project-title">Lampe Mecalac DI82 — Design industriel</div>
+        <p class="project-desc">Conception d'une lampe de travail portable pour la marque Mecalac — usage atelier & bureau, batterie amovible, intensité et température de lumière réglables, design robuste.</p>
+        <div class="project-tags">
+          <span class="tag">Design industriel</span>
+          <span class="tag">Ergonomie</span>
+          <span class="tag">Prototypage</span>
+          <span class="tag">CAO</span>
+        </div>
+        <span class="project-arrow">→</span>
+      </a>
+
+      <a class="project-card" href="projects/escrime.html">
+        <div class="project-num">05</div>
+        <div class="project-title">Révolutionner l'Escrime — Poignée fleuret</div>
+        <p class="project-desc">Conception ergonomique d'une poignée de fleuret pour compétiteurs de haut niveau. Design Thinking, terrain en club, prototypage et dépôt de brevet.</p>
         <div class="project-tags">
           <span class="tag">Ergonomie</span>
           <span class="tag">Biomécanique</span>
           <span class="tag">Prototypage</span>
+          <span class="tag">Brevet</span>
         </div>
-      </div>
+        <span class="project-arrow">→</span>
+      </a>
 
-      <div class="project-card">
-        <div class="project-num">04</div>
-        <div class="project-title">Actionneur électrique — Hayon Sonceboz</div>
-        <p class="project-desc">Stage PFE : développement de démonstrateurs pour actionneurs de hayon électrique. Collaboration R&D et équipes commerciales, excellence industrielle, pilotage de projets cross-fonctionnels.</p>
-        <div class="project-tags">
-          <span class="tag">Électromécanique</span>
-          <span class="tag">Industrie</span>
-          <span class="tag">Suisse</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-num">05</div>
-        <div class="project-title">Simulation FEM — Analyse de structures</div>
-        <p class="project-desc">Analyses par éléments finis de composants soumis à des chargements complexes (fatigue, impact, thermique). Corrélation mesures/calculs, optimisation topologique.</p>
-        <div class="project-tags">
-          <span class="tag">Abaqus</span>
-          <span class="tag">FEM</span>
-          <span class="tag">Optimisation</span>
-        </div>
-      </div>
-
-      <div class="project-card">
+      <a class="project-card" href="projects/fondue-ergo.html">
         <div class="project-num">06</div>
-        <div class="project-title">Modélisation système — MATLAB/Simulink</div>
-        <p class="project-desc">Modélisation et simulation de systèmes dynamiques : contrôle de chaînes cinématiques, régulation de systèmes électromécaniques, analyse fréquentielle.</p>
+        <div class="project-title">Étude ergonomique — Appareil à fondue</div>
+        <p class="project-desc">Étude approfondie EG80 : diagnostic ergonomique complet, métrologie, anthropométrie, protocole expérimental en laboratoire. Cahier des charges ergonomique par composant.</p>
         <div class="project-tags">
-          <span class="tag">MATLAB</span>
-          <span class="tag">Simulink</span>
-          <span class="tag">Contrôle</span>
+          <span class="tag">Ergonomie</span>
+          <span class="tag">Métrologie</span>
+          <span class="tag">IHM</span>
+          <span class="tag">Anthropométrie</span>
         </div>
-      </div>
+        <span class="project-arrow">→</span>
+      </a>
 
     </div>
   </section>
