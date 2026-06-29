@@ -34,6 +34,13 @@
     p { color: var(--grey-text); font-size: 0.95rem; line-height: 1.85; margin-bottom: 1.2rem; }
     p strong { color: var(--white); font-weight: 500; }
 
+    .gallery { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--border); margin-top: 2.5rem; }
+    .img-wrap { background: var(--grey); overflow: hidden; aspect-ratio: 4/3; }
+    .img-wrap.wide { grid-column: span 2; aspect-ratio: 16/9; }
+    .img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+    .img-wrap:hover img { transform: scale(1.04); }
+
     .methodology { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
     .method-timeline { display: flex; flex-direction: column; gap: 0; margin-top: 2.5rem; }
     .method-item { display: grid; grid-template-columns: 160px 1fr; gap: 3rem; padding: 2rem 0; border-bottom: 1px solid var(--border); }
@@ -48,14 +55,16 @@
     .finding-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.75rem; }
     .finding-desc { font-size: 0.82rem; color: var(--grey-text); line-height: 1.75; }
 
-    .nav-projects { padding: 4rem; display: flex; justify-content: space-between; align-items: center; }
+    .nav-projects { padding: 4rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); }
     .nav-proj-link { color: var(--grey-text); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
     .nav-proj-link:hover { color: var(--white); }
 
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
       .project-hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 2.5rem; }
-      .content-section, .methodology, .findings { padding: 3rem 1.5rem; }
+      .content-section, .gallery, .methodology, .findings { padding: 3rem 1.5rem; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid .img-wrap.wide { grid-column: span 2; }
       .method-item { grid-template-columns: 1fr; gap: 0.5rem; }
       .findings-grid { grid-template-columns: 1fr; }
       .nav-projects { padding: 2rem 1.5rem; }
@@ -113,34 +122,34 @@
     </p>
     <p>
       Le produit analysé présente des enjeux de sécurité thermique (surfaces chaudes), de manipulation
-      (lourde, poignées peu ergonomiques) et d'interface (bouton de réglage de température peu intuitif) —
-      autant de problèmes révélés progressivement par la méthode.
+      (lourde, poignées peu ergonomiques) et d'interface (bouton de réglage peu intuitif) — autant de
+      problèmes révélés progressivement par la méthode.
     </p>
   </div>
 
-  <div class="gallery" style="padding:5rem 4rem; border-bottom:1px solid var(--border);">
+  <div class="gallery">
     <h2>Visuels du <span style="color:var(--red)">projet</span></h2>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--border); margin-top:2.5rem;">
-      <div style="background:var(--grey); overflow:hidden; aspect-ratio:16/9; grid-column:span 2;">
-        <img src="images/fondue/p07_img02.jpg" alt="Analyse ergonomique" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+    <div class="gallery-grid">
+      <div class="img-wrap wide">
+        <img src="images/fondue/p07_img02.jpg" alt="Analyse ergonomique" loading="lazy"/>
       </div>
-      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
-        <img src="images/fondue/p08_img01.jpg" alt="Mesures" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      <div class="img-wrap">
+        <img src="images/fondue/p08_img01.jpg" alt="Mesures" loading="lazy"/>
       </div>
-      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
-        <img src="images/fondue/p08_img02.jpg" alt="Test utilisateur" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      <div class="img-wrap">
+        <img src="images/fondue/p08_img02.jpg" alt="Test utilisateur" loading="lazy"/>
       </div>
-      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
-        <img src="images/fondue/p25_img01.jpg" alt="Anthropométrie" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      <div class="img-wrap">
+        <img src="images/fondue/p25_img01.jpg" alt="Anthropométrie" loading="lazy"/>
       </div>
-      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
-        <img src="images/fondue/p43_img01.jpg" alt="Protocole expérimental" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      <div class="img-wrap">
+        <img src="images/fondue/p43_img01.jpg" alt="Protocole expérimental" loading="lazy"/>
       </div>
-      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
-        <img src="images/fondue/p54_img01.jpg" alt="Résultats posture" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      <div class="img-wrap">
+        <img src="images/fondue/p54_img01.jpg" alt="Résultats posture" loading="lazy"/>
       </div>
-      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
-        <img src="images/fondue/p65_img02.jpg" alt="Recommandations" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      <div class="img-wrap">
+        <img src="images/fondue/p65_img02.jpg" alt="Recommandations" loading="lazy"/>
       </div>
     </div>
   </div>
@@ -180,5 +189,25 @@
         <div class="method-phase">Étape 5 — Recommandations</div>
         <div>
           <div class="method-title">Cahier des charges ergonomique</div>
-          <div class="method-desc">Cahier des charges composant par composant : caquelon, poignées, bouton de température, pics, repose-pics, prise électrique. Normes applicables référencées. Specifications quantifiées.</div>
-    
+          <div class="method-desc">Cahier des charges composant par composant : caquelon, poignées, bouton de température, pics, repose-pics, prise électrique. Normes applicables référencées. Spécifications quantifiées.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="findings">
+    <h2>Principaux <span style="color:var(--red)">enseignements</span></h2>
+    <div class="findings-grid">
+      <div class="finding-block">
+        <div class="finding-component">Poignées du caquelon</div>
+        <div class="finding-title">Effort excessif & risque de brûlure</div>
+        <div class="finding-desc">Les poignées actuelles contraignent à une prise en main inconfortable sous charge thermique. Recommandation : matériau isolant, forme adaptée à la prise bimanuelle.</div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-component">Bouton de température</div>
+        <div class="finding-title">Rétroaction insuffisante</div>
+        <div class="finding-desc">L'utilisateur ne perçoit pas clairement la position sélectionnée. Pas de cran, pas d'indicateur visuel lisible en ambiance de repas. Recommandation : crans marqués + affichage DEL.</div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-component">Pics & repose-pics</div>
+        <div class="finding-title">Risque de blessure 

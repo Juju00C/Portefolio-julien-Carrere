@@ -9,10 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --black: #0a0a0a; --white: #f5f4f0; --red: #c0392b; --red-dim: #8b1a10;
-      --grey: #1c1c1c; --grey-mid: #2e2e2e; --grey-text: #999; --border: #2a2a2a;
-    }
+    :root { --black: #0a0a0a; --white: #f5f4f0; --red: #c0392b; --red-dim: #8b1a10; --grey: #1c1c1c; --grey-mid: #2e2e2e; --grey-text: #999; --border: #2a2a2a; }
     html { scroll-behavior: smooth; }
     body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
 
@@ -27,9 +24,8 @@
     .project-eyebrow::before { content: ''; display: inline-block; width: 2rem; height: 1px; background: var(--red); }
     h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
     h1 em { font-style: normal; color: var(--red); }
-    .project-meta { display: flex; flex-direction: column; gap: 1.5rem; }
     .meta-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 0.3rem; }
-    .meta-value { font-size: 0.85rem; color: var(--grey-text); }
+    .meta-value { font-size: 0.85rem; color: var(--grey-text); margin-bottom: 1.2rem; }
     .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
     .tag { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-text); border: 1px solid var(--border); padding: 0.25rem 0.6rem; }
 
@@ -38,16 +34,16 @@
     p { color: var(--grey-text); font-size: 0.95rem; line-height: 1.85; margin-bottom: 1.2rem; }
     p strong { color: var(--white); font-weight: 500; }
 
-    /* Visual placeholder for no-image projects */
-    .visual-block {
-      padding: 5rem 4rem; border-bottom: 1px solid var(--border);
-    }
-    .concept-visual {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5px; background: var(--border); margin-top: 2.5rem;
-    }
-    .concept-card {
-      background: var(--grey); padding: 3rem 2.5rem; position: relative; overflow: hidden;
-    }
+    .gallery { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--border); margin-top: 2.5rem; }
+    .img-wrap { background: var(--grey); overflow: hidden; aspect-ratio: 4/3; }
+    .img-wrap.wide { grid-column: span 3; aspect-ratio: 16/9; }
+    .img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+    .img-wrap:hover img { transform: scale(1.04); }
+
+    .visual-block { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+    .concept-visual { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5px; background: var(--border); margin-top: 2.5rem; }
+    .concept-card { background: var(--black); padding: 3rem 2.5rem; position: relative; overflow: hidden; }
     .concept-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--red); }
     .concept-icon { font-size: 2.5rem; margin-bottom: 1rem; }
     .concept-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; color: var(--white); }
@@ -60,14 +56,16 @@
     .spec-value { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.6rem; color: var(--white); }
     .spec-sub { font-size: 0.78rem; color: var(--grey-text); margin-top: 0.25rem; }
 
-    .nav-projects { padding: 4rem; display: flex; justify-content: space-between; align-items: center; }
+    .nav-projects { padding: 4rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); }
     .nav-proj-link { color: var(--grey-text); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
     .nav-proj-link:hover { color: var(--white); }
 
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
       .project-hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 2.5rem; }
-      .content-section, .visual-block, .specs { padding: 3rem 1.5rem; }
+      .content-section, .gallery, .visual-block, .specs { padding: 3rem 1.5rem; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid .img-wrap.wide { grid-column: span 2; }
       .concept-visual { grid-template-columns: 1fr; }
       .specs-grid { grid-template-columns: 1fr 1fr; }
       .nav-projects { padding: 2rem 1.5rem; }
@@ -97,23 +95,15 @@
         <span class="tag">Projet groupe</span>
       </div>
     </div>
-    <div class="project-meta">
-      <div>
-        <div class="meta-label">UV</div>
-        <div class="meta-value">DI9T — Design industriel & mobilité</div>
-      </div>
-      <div>
-        <div class="meta-label">Équipe</div>
-        <div class="meta-value">Barral · Carrere · Le Breton · Piton</div>
-      </div>
-      <div>
-        <div class="meta-label">Logiciels</div>
-        <div class="meta-value">SolidWorks · MATLAB · Rendu 3D</div>
-      </div>
-      <div>
-        <div class="meta-label">Année</div>
-        <div class="meta-value">2025 — UTBM P25</div>
-      </div>
+    <div>
+      <div class="meta-label">UV</div>
+      <div class="meta-value">DI9T — Design industriel & mobilité</div>
+      <div class="meta-label">Équipe</div>
+      <div class="meta-value">Barral · Carrere · Le Breton · Piton</div>
+      <div class="meta-label">Logiciels</div>
+      <div class="meta-value">SolidWorks · MATLAB · Rendu 3D</div>
+      <div class="meta-label">Année</div>
+      <div class="meta-value">2025 — UTBM P25</div>
     </div>
   </div>
 
@@ -136,29 +126,29 @@
     </p>
   </div>
 
-  <div class="gallery" style="padding:5rem 4rem; border-bottom:1px solid var(--border);">
+  <div class="gallery">
     <h2>Visuels du <span style="color:var(--red)">projet</span></h2>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--border); margin-top:2.5rem;">
-      <div style="background:var(--grey); overflow:hidden; aspect-ratio:16/9; grid-column:span 3;">
-        <img src="images/urba-e/p01_img01.jpg" alt="URBA-E Flux vue d'ensemble" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+    <div class="gallery-grid">
+      <div class="img-wrap wide">
+        <img src="images/urba-e/p01_img01.jpg" alt="URBA-E Flux vue d'ensemble" loading="lazy"/>
       </div>
-      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
-        <img src="images/urba-e/p07_img01.jpg" alt="Vue de profil" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      <div class="img-wrap">
+        <img src="images/urba-e/p07_img01.jpg" alt="Vue de profil" loading="lazy"/>
       </div>
-      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
-        <img src="images/urba-e/p10_img01.jpg" alt="Détail technique" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      <div class="img-wrap">
+        <img src="images/urba-e/p10_img01.jpg" alt="Détail technique" loading="lazy"/>
       </div>
-      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
-        <img src="images/urba-e/p12_img02.jpg" alt="Vue 3D" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      <div class="img-wrap">
+        <img src="images/urba-e/p12_img02.jpg" alt="Vue 3D" loading="lazy"/>
       </div>
-      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
-        <img src="images/urba-e/p13_img01.jpg" alt="Architecture" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      <div class="img-wrap">
+        <img src="images/urba-e/p13_img01.jpg" alt="Architecture" loading="lazy"/>
       </div>
-      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
-        <img src="images/urba-e/p14_img01.jpg" alt="Détail batterie" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      <div class="img-wrap">
+        <img src="images/urba-e/p14_img01.jpg" alt="Détail batterie" loading="lazy"/>
       </div>
-      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
-        <img src="images/urba-e/p15_img01.jpg" alt="Vue finale" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      <div class="img-wrap">
+        <img src="images/urba-e/p15_img01.jpg" alt="Vue finale" loading="lazy"/>
       </div>
     </div>
   </div>
@@ -169,4 +159,28 @@
       <div class="concept-card">
         <div class="concept-icon">⚡</div>
         <div class="concept-title">Chaîne de traction électrique</div>
-        <div class="con
+        <div class="concept-text">Moteur-roue arrière, contrôleur intégré, récupération d'énergie au freinage. Dimensionnement selon le cycle urbain WMTC.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🔋</div>
+        <div class="concept-title">Batterie amovible 15 kg</div>
+        <div class="concept-text">Pack lithium extractible en moins de 30 secondes. Rechargeable sur prise domestique standard 220V. Position basse pour un centre de gravité optimal.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">🏗️</div>
+        <div class="concept-title">Structure cadre périmétrique</div>
+        <div class="concept-text">Cadre acier tubulaire optimisé pour l'intégration de la batterie. Analyse RDM des jonctions critiques. Empattement 1323 mm pour stabilité et maniabilité.</div>
+      </div>
+      <div class="concept-card">
+        <div class="concept-icon">📐</div>
+        <div class="concept-title">Guidon rabattable — 350 mm plié</div>
+        <div class="concept-text">Guidon articulé permettant un gabarit de stationnement réduit. Verrouillage mécanique sécurisé, déployable en 5 secondes.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="specs">
+    <h2>Caractéristiques <span style="color:var(--red)">techniques</span></h2>
+    <div class="specs-grid">
+      <div class="spec-block">
+        <div class="sp
