@@ -119,80 +119,37 @@
     </p>
   </div>
 
+  <div class="gallery" style="padding:5rem 4rem; border-bottom:1px solid var(--border);">
+    <h2>Visuels du <span style="color:var(--red)">projet</span></h2>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--border); margin-top:2.5rem;">
+      <div style="background:var(--grey); overflow:hidden; aspect-ratio:16/9; grid-column:span 3;">
+        <img src="images/honda/p01_img01.jpg" alt="Honda CRM 125 — vue CATIA" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      </div>
+      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
+        <img src="images/honda/p05_img01.jpg" alt="Pièce moteur" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      </div>
+      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
+        <img src="images/honda/p05_img02.jpg" alt="Modélisation CATIA" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      </div>
+      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
+        <img src="images/honda/p08_img01.jpg" alt="Assemblage" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      </div>
+      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
+        <img src="images/honda/p11_img01.jpg" alt="Détail vilebrequin" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      </div>
+      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
+        <img src="images/honda/p14_img01.jpg" alt="Vue section" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      </div>
+      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
+        <img src="images/honda/p16_img01.jpg" alt="Rendu assemblage" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      </div>
+      <div style="background:var(--grey); overflow:hidden; aspect-ratio:4/3;">
+        <img src="images/honda/p16_img02.jpg" alt="Vue finale" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy"/>
+      </div>
+    </div>
+  </div>
+
   <div class="phases">
     <h2>Méthodologie <span style="color:var(--red)">reverse engineering</span></h2>
     <div class="phases-list">
-      <div class="phase-item">
-        <div class="phase-num">01</div>
-        <div>
-          <div class="phase-title">Démontage & inventaire</div>
-          <div class="phase-desc">Démontage complet du moteur 2T. Utilisation d'outillage spécialisé (arrache-moyeu conique) pour extraire la cloche d'allumage. Inventaire exhaustif de chaque sous-ensemble.</div>
-        </div>
-      </div>
-      <div class="phase-item">
-        <div class="phase-num">02</div>
-        <div>
-          <div class="phase-title">Cotation & métrologie</div>
-          <div class="phase-desc">Mesure systématique de chaque pièce au pied à coulisse, micromètre et calibre. Relevé des cotes fonctionnelles et des tolérances d'ajustement. Documentation photographique complète.</div>
-        </div>
-      </div>
-      <div class="phase-item">
-        <div class="phase-num">03</div>
-        <div>
-          <div class="phase-title">Modélisation CATIA V5</div>
-          <div class="phase-desc">Reconstruction numérique de chaque pièce en Part Design : carter moteur, vilebrequin, piston, cylindre, transmission primaire, allumage. Respect des raccords et ajustements fonctionnels.</div>
-        </div>
-      </div>
-      <div class="phase-item">
-        <div class="phase-num">04</div>
-        <div>
-          <div class="phase-title">Assemblage & vérification</div>
-          <div class="phase-desc">Assembly Design avec contraintes de positionnement. Détection des interférences, validation des jeux fonctionnels, contrôle de cohérence avec la cinématique du moteur réel.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="specs">
-    <h2>Le moteur <span style="color:var(--red)">Honda CRM 125</span></h2>
-    <div class="specs-grid">
-      <div class="spec-block">
-        <div class="spec-title">Cylindrée</div>
-        <div class="spec-value">125 cc</div>
-        <div class="spec-sub">Monocylindre 2 temps</div>
-      </div>
-      <div class="spec-block">
-        <div class="spec-title">Millésime</div>
-        <div class="spec-value">1994</div>
-        <div class="spec-sub">Honda CRM 125 R</div>
-      </div>
-      <div class="spec-block">
-        <div class="spec-title">Architecture</div>
-        <div class="spec-value">2T</div>
-        <div class="spec-sub">Refroidissement liquide, valve ATAC</div>
-      </div>
-      <div class="spec-block">
-        <div class="spec-title">Pièces modélisées</div>
-        <div class="spec-value">30+</div>
-        <div class="spec-sub">Carter, transmission, allumage…</div>
-      </div>
-      <div class="spec-block">
-        <div class="spec-title">Outil CAO</div>
-        <div class="spec-value">CATIA V5</div>
-        <div class="spec-sub">Part Design + Assembly Design</div>
-      </div>
-      <div class="spec-block">
-        <div class="spec-title">Moteur similaire</div>
-        <div class="spec-value">NSR 125</div>
-        <div class="spec-sub">Base commune — démarreur électrique en option</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="nav-projects">
-    <a href="urba-e-flux.html" class="nav-proj-link">← Projet précédent</a>
-    <a href="mecalac-lamp.html" class="nav-proj-link">Projet suivant →</a>
-  </div>
-
-</body>
-</html>
+      <div class="p
